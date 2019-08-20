@@ -1,16 +1,20 @@
-class User < ActiveRecord::Base
-  attributes :id, :created_at, :updated_at, :full_name, :email
+class User < ApplicationRecord
+  has_secure_password
 
-  has_many :lists
-  has_many :items, through: :lists
+  has_many :lists, dependent: :destroy
 
+  validates :name,
+            length: { minimum: 3 },
+            presence: true,
+            uniqueness: { case_sensitive: false }
 
-  def full_name
-    object.full_name
-  end
+  validates :email,
+            length: { minimum: 3, maximum: 254 },
+            presence: true,
+            uniqueness: { case_sensitive: false }
 
-  def email
-    object.email
-  end
+  validates :password,
+            length: { minimum: 8 },
+            presence: true
 
 end
