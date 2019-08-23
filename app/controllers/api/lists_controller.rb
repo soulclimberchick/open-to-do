@@ -4,6 +4,7 @@ class Api::ListsController < ApiController
   def index
     @lists = List.all
     render json: @lists, each_serializer: ListSerializer
+  end
 
   def create
     list = List.new(list_params)
