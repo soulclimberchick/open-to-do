@@ -7,11 +7,11 @@ namespace :api, defaults: { format: :json } do
     resources :lists
   end
 
-  resources :lists, only: [] do
-    resources :items, only: [:create]
+  resources :lists, only: [:update] do
+    resources :items, only: [:create, :update]
   end
 
-  resources :items, only: [:destroy]
+  resources :items, only: [:destroy, :update]
 end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
