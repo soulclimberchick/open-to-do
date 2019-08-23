@@ -5,4 +5,8 @@ class ItemSerializer < ActiveModel::Serializer
   def description
     object.description
   end
+
+  def created_at
+    object.created_at.strftime('%b %e %Y %H:%M%p')
+  end
 end
